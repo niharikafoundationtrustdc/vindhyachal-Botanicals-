@@ -138,6 +138,12 @@ export const Header: React.FC<HeaderProps> = ({
               Products
             </button>
             <button
+              onClick={() => scrollToSection('certifications')}
+              className="px-3 py-2 text-sm font-medium text-stone-700 hover:text-[#0e632b] transition-colors"
+            >
+              Certifications
+            </button>
+            <button
               onClick={() => scrollToSection('private-labeling')}
               className="px-3 py-2 text-sm font-medium text-stone-700 hover:text-[#0e632b] transition-colors"
             >
@@ -307,6 +313,12 @@ export const Header: React.FC<HeaderProps> = ({
               className="text-left py-2 text-stone-800 hover:text-[#0e632b] pl-3 border-l-2 border-emerald-600"
             >
               Special Active Ingredients
+            </button>
+            <button
+              onClick={() => scrollToSection('certifications')}
+              className="text-left py-2 text-stone-800 hover:text-[#0e632b]"
+            >
+              Our Certification
             </button>
             <button
               onClick={() => scrollToSection('private-labeling')}

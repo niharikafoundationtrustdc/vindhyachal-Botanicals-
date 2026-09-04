@@ -28,7 +28,7 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Top Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-300/80 text-[#0e632b] text-xs font-semibold tracking-wide uppercase">
               <Leaf className="w-3.5 h-3.5 text-[#0e632b]" />
-              <span>Certified Manufacturers, Suppliers & Exporters • MPC, India</span>
+              <span>ISO 9001:2015 &amp; GMP Certified Manufacturers • MPC, India</span>
             </div>
 
             {/* Main Headline */}

@@ -283,6 +283,14 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onOpenQuote })
               </li>
               <li>
                 <button 
+                  onClick={() => scrollTo('certifications')}
+                  className="hover:text-emerald-400 transition-colors flex items-center gap-1 font-semibold text-emerald-400/90"
+                >
+                  <span>Our Certification (ISO &amp; GMP)</span>
+                </button>
+              </li>
+              <li>
+                <button 
                   onClick={() => scrollTo('why-us')}
                   className="hover:text-emerald-400 transition-colors"
                 >

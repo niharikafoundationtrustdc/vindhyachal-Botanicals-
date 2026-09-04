@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { WhoWeAre } from './components/WhoWeAre';
 import { MissionVision } from './components/MissionVision';
+import { Certifications } from './components/Certifications';
 import { ProductCatalog } from './components/ProductCatalog';
 import { PrivateLabeling } from './components/PrivateLabeling';
 import { WhyChooseUs } from './components/WhyChooseUs';
@@ -154,6 +155,9 @@ export default function App() {
             setIsQuoteOpen(true);
           }}
         />
+
+        {/* Our Certification (ISO 9001:2015 & GMP) */}
+        <Certifications />
 
         {/* Complete Product Catalog & Pricing */}
         <ProductCatalog
