@@ -1,0 +1,6 @@
+{
+  "name": "Vindhyachal Botanicals",
+  "description": "Premier manufacturer, supplier, and exporter of pure natural essential oils, carrier oils, hydrosols, and botanical extracts with private labeling services.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
