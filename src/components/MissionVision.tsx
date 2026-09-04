@@ -59,13 +59,13 @@ export const MissionVision: React.FC<MissionVisionProps> = ({ onGetMoreInfo }) =
         {/* Our Vision Row */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 items-center">
           
-          {/* Image Left (Amber dropper bottle with rose petals on wooden plate matching user screenshot 4) */}
+          {/* Image Left (Amber essential oil dropper bottles in soft sunlight) */}
           <div className="md:col-span-5 flex justify-center order-2 md:order-1">
             <div className="relative w-full max-w-sm">
               <div className="aspect-4/5 rounded-3xl overflow-hidden border border-stone-300/80 shadow-lg bg-stone-100 relative group">
                 <img
-                  src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80"
-                  alt="Pure Floral Extracts with Rose Petals"
+                  src="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=800&q=80"
+                  alt="Pure Essential Oil Bottles with Dropper"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />

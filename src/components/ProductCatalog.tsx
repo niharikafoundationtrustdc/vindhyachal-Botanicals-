@@ -197,6 +197,11 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                         alt={product.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         loading="lazy"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.onerror = null;
+                          target.src = 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80';
+                        }}
                       />
                       {/* Badge if available */}
                       {product.badge && (

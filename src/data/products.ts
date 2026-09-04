@@ -33,7 +33,7 @@ export const PRODUCTS: Product[] = [
       { size: '5 Litre Carboy', priceINR: 8200, priceUSD: 99, isBulk: true },
       { size: '25kg HDPE Drum', priceINR: 36000, priceUSD: 440, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1547517023-7ca0c162fbd1?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80',
     badge: 'Popular Floral Water',
   },
   {
@@ -56,7 +56,7 @@ export const PRODUCTS: Product[] = [
       { size: '5 Litre Carboy', priceINR: 6500, priceUSD: 79, isBulk: true },
       { size: '25kg HDPE Drum', priceINR: 28000, priceUSD: 340, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'rose-hydrosol',
@@ -78,7 +78,7 @@ export const PRODUCTS: Product[] = [
       { size: '5 Litre Carboy', priceINR: 9200, priceUSD: 112, isBulk: true },
       { size: '25kg HDPE Drum', priceINR: 41000, priceUSD: 500, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80',
     badge: 'Bestseller Hydrosol',
   },
   {
@@ -120,7 +120,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 1400, priceUSD: 17.5 },
       { size: '25kg HDPE Drum', priceINR: 27500, priceUSD: 335, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'tea-tree-hydrosol',
@@ -181,7 +181,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 1650, priceUSD: 20 },
       { size: '25kg HDPE Drum', priceINR: 31000, priceUSD: 380, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80',
     badge: 'Hair Care Favorite',
   },
   {
@@ -224,7 +224,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 2600, priceUSD: 32 },
       { size: '25kg HDPE Drum', priceINR: 52000, priceUSD: 635, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'cucumber-hydrosol',
@@ -244,7 +244,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 1350, priceUSD: 16.5 },
       { size: '25kg HDPE Drum', priceINR: 26000, priceUSD: 315, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'basil-hydrosol',
@@ -264,7 +264,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 1450, priceUSD: 18 },
       { size: '25kg HDPE Drum', priceINR: 28000, priceUSD: 340, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=600&q=80',
   },
 
   // ==========================================
@@ -334,7 +334,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 3200, priceUSD: 39 },
       { size: '25kg HDPE Drum', priceINR: 65000, priceUSD: 790, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'saw-palmetto-oil',
@@ -355,7 +355,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 18500, priceUSD: 225, isBulk: true },
       { size: '5kg Canister', priceINR: 85000, priceUSD: 1030, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1512290900672-1f023812976b?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=600&q=80',
     badge: 'Hair Regrowth Active',
   },
   {
@@ -399,7 +399,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 9200, priceUSD: 112 },
       { size: '25kg HDPE Drum', priceINR: 195000, priceUSD: 2380, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1540148426945-6cf22a6b2383?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=600&q=80',
     pharmaGrade: true,
   },
   {
@@ -421,7 +421,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 14500, priceUSD: 178 },
       { size: '25kg HDPE Drum', priceINR: 320000, priceUSD: 3900, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'onion-oil',
@@ -442,7 +442,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 2100, priceUSD: 26 },
       { size: '25kg HDPE Drum', priceINR: 42000, priceUSD: 510, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=600&q=80',
     badge: 'Trending Hair Care',
   },
   {
@@ -464,7 +464,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 2700, priceUSD: 33 },
       { size: '25kg HDPE Drum', priceINR: 56000, priceUSD: 680, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80',
   },
 
   // ==========================================
@@ -491,7 +491,7 @@ export const PRODUCTS: Product[] = [
       { size: '25kg HDPE Drum', priceINR: 31000, priceUSD: 380, isBulk: true },
       { size: '200kg Steel Drum', priceINR: 230000, priceUSD: 2800, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80',
     badge: 'Essential Carrier',
   },
   {
@@ -512,7 +512,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Bottle', priceINR: 1250, priceUSD: 15.5 },
       { size: '25kg Drum', priceINR: 26000, priceUSD: 315, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'apricot-oil',
@@ -532,7 +532,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Bottle', priceINR: 1450, priceUSD: 18 },
       { size: '25kg Drum', priceINR: 29000, priceUSD: 350, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1595475207225-428b62bda831?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'argan-oil',
@@ -553,7 +553,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 6200, priceUSD: 76 },
       { size: '25kg Drum', priceINR: 135000, priceUSD: 1640, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
     badge: 'Premium Cosmetic Oil',
   },
   {
@@ -574,7 +574,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 1800, priceUSD: 22 },
       { size: '25kg Drum', priceINR: 38000, priceUSD: 460, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'black-cumin-seed-oil',
@@ -596,7 +596,7 @@ export const PRODUCTS: Product[] = [
       { size: '5 Litre Can', priceINR: 8800, priceUSD: 107, isBulk: true },
       { size: '25kg HDPE Drum', priceINR: 41000, priceUSD: 500, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=600&q=80',
     badge: 'High Thymoquinone',
   },
   {
@@ -617,7 +617,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Bottle', priceINR: 980, priceUSD: 12 },
       { size: '25kg Drum', priceINR: 21000, priceUSD: 255, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'calendula-oil',
@@ -637,7 +637,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 2200, priceUSD: 27 },
       { size: '25kg Drum', priceINR: 47000, priceUSD: 570, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80',
     badge: 'Pune Exporter Highlight',
   },
   {
@@ -659,7 +659,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 7500, priceUSD: 92 },
       { size: '25kg Drum', priceINR: 160000, priceUSD: 1950, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1541344999736-83eca872f241?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=600&q=80',
     badge: 'Maharashtra Manufacturer',
   },
   {
@@ -680,7 +680,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 2300, priceUSD: 28 },
       { size: '25kg Drum', priceINR: 49000, priceUSD: 595, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'carrot-seed-oil',
@@ -701,7 +701,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 11200, priceUSD: 137 },
       { size: '25kg Drum', priceINR: 240000, priceUSD: 2920, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1447175008436-054170c2e979?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=600&q=80',
     badge: 'Gujarat / MP Highlight',
   },
   {
@@ -723,7 +723,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Bottle', priceINR: 2600, priceUSD: 32 },
       { size: '25kg Drum', priceINR: 58000, priceUSD: 710, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80',
     badge: 'Gold Standard Carrier',
   },
   {
@@ -745,7 +745,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 6800, priceUSD: 83 },
       { size: '25kg Drum', priceINR: 145000, priceUSD: 1760, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
     badge: 'Fades Scars & Spots',
   },
   {
@@ -788,7 +788,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Bottle', priceINR: 1350, priceUSD: 16.5 },
       { size: '25kg Drum', priceINR: 28000, priceUSD: 340, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'sesame-oil',
@@ -808,7 +808,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 750, priceUSD: 9.2 },
       { size: '25kg Drum', priceINR: 15500, priceUSD: 190, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'pumpkin-seed-oil',
@@ -828,7 +828,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 2100, priceUSD: 26 },
       { size: '25kg Drum', priceINR: 45000, priceUSD: 550, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'evening-primrose-oil',
@@ -848,7 +848,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Bottle', priceINR: 2800, priceUSD: 34 },
       { size: '25kg Drum', priceINR: 62000, priceUSD: 755, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'wheatgerm-oil',
@@ -868,7 +868,7 @@ export const PRODUCTS: Product[] = [
       { size: '1 Litre Can', priceINR: 1950, priceUSD: 24 },
       { size: '25kg Drum', priceINR: 42000, priceUSD: 510, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'sunflower-oil',
@@ -888,7 +888,7 @@ export const PRODUCTS: Product[] = [
       { size: '5 Litre Can', priceINR: 1950, priceUSD: 24, isBulk: true },
       { size: '25kg Drum', priceINR: 9200, priceUSD: 112, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80',
   },
 
   // ==========================================
@@ -937,7 +937,7 @@ export const PRODUCTS: Product[] = [
       { size: '1kg Aluminium Bottle', priceINR: 11500, priceUSD: 140, isBulk: true },
       { size: '25kg Drum', priceINR: 245000, priceUSD: 2980, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
     badge: 'Bestselling Essential Oil',
   },
   {
@@ -960,7 +960,7 @@ export const PRODUCTS: Product[] = [
       { size: '1kg Aluminium Bottle', priceINR: 9800, priceUSD: 120, isBulk: true },
       { size: '25kg Drum', priceINR: 210000, priceUSD: 2560, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=600&q=80',
     badge: 'Sacred Tulsi',
   },
   {
@@ -1005,7 +1005,7 @@ export const PRODUCTS: Product[] = [
       { size: '100ml Bottle', priceINR: 1900, priceUSD: 23 },
       { size: '1kg Bottle', priceINR: 13500, priceUSD: 165, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1547517023-7ca0c162fbd1?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'tea-tree-oil-bp',
@@ -1050,7 +1050,7 @@ export const PRODUCTS: Product[] = [
       { size: '100ml Bottle', priceINR: 15500, priceUSD: 189 },
       { size: '1kg Bottle', priceINR: 145000, priceUSD: 1770, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1547517023-7ca0c162fbd1?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=600&q=80',
     badge: 'Pune Manufacturer Spec',
   },
   {
@@ -1073,7 +1073,7 @@ export const PRODUCTS: Product[] = [
       { size: '1kg Bottle', priceINR: 7900, priceUSD: 96, isBulk: true },
       { size: '25kg Drum', priceINR: 172000, priceUSD: 2100, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80',
     badge: 'Hair Regrowth Star',
     pharmaGrade: true,
   },
@@ -1097,7 +1097,7 @@ export const PRODUCTS: Product[] = [
       { size: '25kg Drum', priceINR: 78000, priceUSD: 950, isBulk: true },
       { size: '200kg Drum', priceINR: 580000, priceUSD: 7070, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1512290900672-1f023812976b?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=600&q=80',
     badge: 'IP / BP Certified',
     pharmaGrade: true,
   },
@@ -1120,7 +1120,7 @@ export const PRODUCTS: Product[] = [
       { size: '1kg Aluminium Bottle', priceINR: 5400, priceUSD: 66, isBulk: true },
       { size: '25kg Drum', priceINR: 118000, priceUSD: 1440, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
     badge: 'Pharma Grade BP',
     pharmaGrade: true,
   },
@@ -1142,7 +1142,7 @@ export const PRODUCTS: Product[] = [
       { size: '1kg Aluminium Bottle', priceINR: 3900, priceUSD: 48, isBulk: true },
       { size: '25kg Drum', priceINR: 82000, priceUSD: 1000, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=600&q=80',
     badge: 'Central India Mint Belt',
   },
   {
@@ -1229,7 +1229,7 @@ export const PRODUCTS: Product[] = [
       { size: '100ml Bottle', priceINR: 2100, priceUSD: 25.5 },
       { size: '1kg Bottle', priceINR: 16500, priceUSD: 200, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
     badge: 'Diffusers & Candles Exporter',
   },
   {
@@ -1296,7 +1296,7 @@ export const PRODUCTS: Product[] = [
       { size: '100ml Bottle', priceINR: 3200, priceUSD: 39 },
       { size: '1kg Bottle', priceINR: 26000, priceUSD: 317, isBulk: true },
     ],
-    image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=600&q=80',
     badge: 'Rare Ruh Khus',
   },
   {
