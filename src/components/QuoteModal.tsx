@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
-import { Product } from '../types';
-import { X, Send, FileText, CheckCircle2, Building, Mail, Phone, MapPin } from 'lucide-react';
+import { X, Send, CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/products';
 
 interface QuoteModalProps {
   isOpen: boolean;
   onClose: () => void;
-  prefilledProduct?: Product | null;
+  preselectedProduct?: string;
 }
 
 export const QuoteModal: React.FC<QuoteModalProps> = ({
   isOpen,
   onClose,
-  prefilledProduct,
+  preselectedProduct,
 }) => {
-  const [companyName, setCompanyName] = useState('');
-  const [contactPerson, setContactPerson] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [country, setCountry] = useState('India');
-  const [requestedItems, setRequestedItems] = useState(
-    prefilledProduct ? `${prefilledProduct.name} - 25kg Drum / 100 Litres` : ''
-  );
-  const [notes, setNotes] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    companyName: '',
+    email: '',
+    phone: '',
+    country: '',
+    productInterest: preselectedProduct || 'Bulk Essential Oils',
+    estimatedQuantity: '',
+    needsPrivateLabel: false,
+    message: '',
+  });
+
   const [submitted, setSubmitted] = useState(false);
 
   if (!isOpen) return null;
@@ -31,178 +33,221 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
     e.preventDefault();
     setSubmitted(true);
 
-    const message = `*Wholesale RFQ / Proforma Invoice Request*\n` +
-      `• Company: ${companyName}\n` +
-      `• Contact: ${contactPerson}\n` +
-      `• Phone: ${phone}\n` +
-      `• Email: ${email}\n` +
-      `• Destination Country: ${country}\n` +
-      `• Required Products & Quantities:\n  ${requestedItems}\n` +
-      `• Additional Requirements: ${notes || 'Standard Export Quality / COA required'}`;
+    const text = `*Request for Wholesale Quote - Vindhyachal Botanicals*\n` +
+      `• Name: ${formData.name}\n` +
+      `• Company: ${formData.companyName}\n` +
+      `• Country: ${formData.country || 'Not specified'}\n` +
+      `• Email: ${formData.email}\n` +
+      `• Phone/WhatsApp: ${formData.phone}\n` +
+      `• Product Requirement: ${formData.productInterest}\n` +
+      `• Est. Quantity: ${formData.estimatedQuantity || 'Not specified'}\n` +
+      `• Needs Private Label: ${formData.needsPrivateLabel ? 'Yes' : 'No'}\n` +
+      `• Message: ${formData.message || 'None'}`;
 
-    const waUrl = `https://wa.me/${COMPANY_DETAILS.whatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(waUrl, '_blank');
+    const waUrl = `https://wa.me/${COMPANY_DETAILS.whatsappNumber}?text=${encodeURIComponent(text)}`;
+    setTimeout(() => {
+      window.open(waUrl, '_blank');
+    }, 400);
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6">
-      <div 
-        className="relative bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-stone-200 animate-in fade-in zoom-in-95 duration-200"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-9 h-9 bg-stone-100 hover:bg-stone-200 text-stone-600 rounded-full flex items-center justify-center transition-colors"
-          aria-label="Close dialog"
-        >
-          <X className="w-5 h-5" />
-        </button>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fadeIn">
+      <div className="relative w-full max-w-2xl bg-[#F7F4EC] rounded-3xl border border-[#E9E2D3] shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+        
+        {/* Modal Header */}
+        <div className="bg-[#183C32] text-[#F7F4EC] p-6 sm:p-8 relative">
+          <button
+            onClick={onClose}
+            className="absolute top-6 right-6 p-2 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            aria-label="Close modal"
+          >
+            <X className="w-5 h-5" />
+          </button>
 
-        <div className="mb-6">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#0e632b] text-xs font-semibold uppercase tracking-wider mb-2">
-            <FileText className="w-3.5 h-3.5" />
-            Wholesale RFQ &amp; Export Quotations
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#B79A62] text-[11px] font-semibold uppercase tracking-widest mb-2">
+            <Sparkles className="w-3 h-3 text-[#B79A62]" />
+            <span>Commercial Inquiries</span>
           </div>
-          <h2 className="font-brand-serif font-bold text-2xl text-stone-900">
-            Request Official Factory Quote
-          </h2>
-          <p className="text-xs text-stone-500 mt-1">
-            Direct pricing from Vindhyachal Botanicals extraction plant in Datia, MP.
+
+          <h3 className="font-serif-brand text-2xl sm:text-3xl font-bold">
+            Request Wholesale Quotation
+          </h3>
+          <p className="text-xs sm:text-sm text-white/80 font-light mt-1 max-w-lg">
+            Direct pricing from manufacturing works with specification sheets and COA for global cosmetic, wellness, and pharmaceutical brands.
           </p>
         </div>
 
-        {submitted ? (
-          <div className="py-8 text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto">
-              <CheckCircle2 className="w-6 h-6" />
-            </div>
-            <h3 className="font-brand-serif font-bold text-lg text-stone-800">
-              Quotation Request Transmitted!
-            </h3>
-            <p className="text-xs text-stone-600 max-w-sm mx-auto">
-              Our export and manufacturing division has received your request. We will review batch availability and provide our best factory rate along with batch COA and MSDS.
-            </p>
-            <button
-              onClick={onClose}
-              className="mt-4 px-6 py-2 bg-[#0e632b] text-white text-xs font-semibold rounded-xl"
-            >
-              Back to Catalog
-            </button>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-3.5 text-xs">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label className="block font-semibold text-stone-700 mb-1">
-                  Company / Organization
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={companyName}
-                  onChange={(e) => setCompanyName(e.target.value)}
-                  placeholder="e.g. Flora Essences Pvt Ltd"
-                  className="w-full px-3 py-2 bg-stone-50 border border-stone-300 rounded-xl focus:ring-1 focus:ring-[#0e632b]"
-                />
+        {/* Modal Body */}
+        <div className="p-6 sm:p-8 overflow-y-auto space-y-5">
+          {submitted ? (
+            <div className="py-10 text-center space-y-4">
+              <div className="w-14 h-14 rounded-full bg-[#183C32] text-[#B79A62] flex items-center justify-center mx-auto">
+                <CheckCircle2 className="w-7 h-7" />
               </div>
-
-              <div>
-                <label className="block font-semibold text-stone-700 mb-1">
-                  Contact Person
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={contactPerson}
-                  onChange={(e) => setContactPerson(e.target.value)}
-                  placeholder="Full Name"
-                  className="w-full px-3 py-2 bg-stone-50 border border-stone-300 rounded-xl focus:ring-1 focus:ring-[#0e632b]"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label className="block font-semibold text-stone-700 mb-1">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="procurement@company.com"
-                  className="w-full px-3 py-2 bg-stone-50 border border-stone-300 rounded-xl focus:ring-1 focus:ring-[#0e632b]"
-                />
-              </div>
-
-              <div>
-                <label className="block font-semibold text-stone-700 mb-1">
-                  Phone / WhatsApp Number
-                </label>
-                <input
-                  type="tel"
-                  required
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+91 / Country Code + Phone"
-                  className="w-full px-3 py-2 bg-stone-50 border border-stone-300 rounded-xl focus:ring-1 focus:ring-[#0e632b]"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block font-semibold text-stone-700 mb-1">
-                Destination Port / Country
-              </label>
-              <input
-                type="text"
-                required
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                placeholder="e.g. Mumbai, India / Hamburg, Germany / Dubai, UAE"
-                className="w-full px-3 py-2 bg-stone-50 border border-stone-300 rounded-xl focus:ring-1 focus:ring-[#0e632b]"
-              />
-            </div>
-
-            <div>
-              <label className="block font-semibold text-stone-700 mb-1">
-                Products and Quantities Needed
-              </label>
-              <textarea
-                required
-                rows={2}
-                value={requestedItems}
-                onChange={(e) => setRequestedItems(e.target.value)}
-                placeholder="List required oils, hydrosols, or seeds with desired pack size (e.g. 5kg, 25kg drum, 180kg drum)"
-                className="w-full px-3 py-2 bg-stone-50 border border-stone-300 rounded-xl focus:ring-1 focus:ring-[#0e632b]"
-              />
-            </div>
-
-            <div>
-              <label className="block font-semibold text-stone-700 mb-1">
-                Special Quality / Certificate Requirements
-              </label>
-              <input
-                type="text"
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                placeholder="e.g. Need GC-MS, Halal, Kosher, IP/BP Grade, Organic Certificate"
-                className="w-full px-3 py-2 bg-stone-50 border border-stone-300 rounded-xl focus:ring-1 focus:ring-[#0e632b]"
-              />
-            </div>
-
-            <div className="pt-2">
+              <h4 className="font-serif-brand text-2xl font-bold text-[#183C32]">
+                Quote Request Dispatched
+              </h4>
+              <p className="text-xs sm:text-sm text-[#202723]/75 max-w-md mx-auto font-light leading-relaxed">
+                Your request has been forwarded to our commercial pricing desk. An export specialist will prepare your custom tariff and dispatch schedule.
+              </p>
               <button
-                type="submit"
-                className="w-full py-3 px-4 bg-[#0e632b] hover:bg-[#09471e] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                onClick={onClose}
+                className="px-6 py-2.5 bg-[#183C32] text-[#F7F4EC] rounded-full text-xs font-semibold uppercase tracking-wider"
               >
-                <Send className="w-4 h-4" />
-                <span>Submit &amp; Open WhatsApp RFQ</span>
+                Close Window
               </button>
             </div>
-          </form>
-        )}
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#183C32] mb-1">
+                    Contact Name <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Rachel Sterling"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#E9E2D3] rounded-xl text-xs sm:text-sm text-[#202723] focus:outline-hidden focus:border-[#183C32]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#183C32] mb-1">
+                    Company Name <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Luminary Botanics Ltd"
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#E9E2D3] rounded-xl text-xs sm:text-sm text-[#202723] focus:outline-hidden focus:border-[#183C32]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#183C32] mb-1">
+                    Corporate Email <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="procurement@brand.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#E9E2D3] rounded-xl text-xs sm:text-sm text-[#202723] focus:outline-hidden focus:border-[#183C32]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#183C32] mb-1">
+                    Phone / WhatsApp <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="+1 555 123 4567"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#E9E2D3] rounded-xl text-xs sm:text-sm text-[#202723] focus:outline-hidden focus:border-[#183C32]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#183C32] mb-1">
+                    Destination Country
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. United States, Germany"
+                    value={formData.country}
+                    onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#E9E2D3] rounded-xl text-xs sm:text-sm text-[#202723] focus:outline-hidden focus:border-[#183C32]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#183C32] mb-1">
+                    Product / Ingredient of Interest
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Lavender Essential Oil, Jojoba Oil"
+                    value={formData.productInterest}
+                    onChange={(e) => setFormData({ ...formData, productInterest: e.target.value })}
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#E9E2D3] rounded-xl text-xs sm:text-sm text-[#202723] focus:outline-hidden focus:border-[#183C32]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#183C32] mb-1">
+                    Estimated Batch Volume
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. 5 x 25kg Drums or 2,000 finished units"
+                    value={formData.estimatedQuantity}
+                    onChange={(e) => setFormData({ ...formData, estimatedQuantity: e.target.value })}
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#E9E2D3] rounded-xl text-xs sm:text-sm text-[#202723] focus:outline-hidden focus:border-[#183C32]"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 pt-1">
+                <input
+                  type="checkbox"
+                  id="needsPrivateLabel"
+                  checked={formData.needsPrivateLabel}
+                  onChange={(e) => setFormData({ ...formData, needsPrivateLabel: e.target.checked })}
+                  className="rounded border-[#E9E2D3] text-[#183C32] focus:ring-[#183C32]"
+                />
+                <label htmlFor="needsPrivateLabel" className="text-xs text-[#183C32] font-medium cursor-pointer">
+                  Require Custom Private Label Packaging / Finished Goods
+                </label>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-[#183C32] mb-1">
+                  Specific Requirements / Questions
+                </label>
+                <textarea
+                  rows={3}
+                  placeholder="Mention target specifications, certifications needed, or sample requests..."
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#E9E2D3] rounded-xl text-xs sm:text-sm text-[#202723] focus:outline-hidden focus:border-[#183C32] resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3.5 bg-[#183C32] hover:bg-[#204e41] text-[#F7F4EC] rounded-xl text-xs font-semibold uppercase tracking-widest transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+              >
+                <Send className="w-4 h-4 text-[#B79A62]" />
+                <span>Submit Quotation Request</span>
+              </button>
+            </form>
+          )}
+        </div>
+
+        {/* Modal Footer */}
+        <div className="p-4 bg-white border-t border-[#E9E2D3] flex items-center justify-between text-[11px] text-[#202723]/60">
+          <div className="flex items-center gap-1.5">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#B79A62]" />
+            <span>Guaranteed privacy under strict B2B NDA standards.</span>
+          </div>
+          <button onClick={onClose} className="hover:underline">
+            Cancel
+          </button>
+        </div>
+
       </div>
     </div>
   );

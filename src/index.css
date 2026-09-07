@@ -2,25 +2,44 @@
 
 @theme {
   --font-serif: "Playfair Display", Georgia, serif;
-  --font-display: "Cinzel", serif;
-  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-  --color-brand-green: #0e632b;
-  --color-brand-green-dark: #09471e;
-  --color-brand-navy: #151833;
-  --color-brand-amber: #e67e22;
-  --color-brand-amber-dark: #d35400;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --color-forest: #183C32;
+  --color-botanical: #496B52;
+  --color-sage: #A8B7A1;
+  --color-ivory: #F7F4EC;
+  --color-sand: #E9E2D3;
+  --color-gold: #B79A62;
+  --color-charcoal: #202723;
 }
 
 html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);
+  background-color: #F7F4EC;
+  color: #202723;
 }
 
-.font-brand-serif {
+.font-serif-brand {
   font-family: var(--font-serif);
 }
 
-.font-brand-display {
-  font-family: var(--font-display);
+.font-sans-brand {
+  font-family: var(--font-sans);
+}
+
+/* Custom scrollbar for subtle luxury feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F4EC;
+}
+::-webkit-scrollbar-thumb {
+  background: #A8B7A1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #496B52;
 }
 

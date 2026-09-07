@@ -24,12 +24,17 @@ export interface Product {
   origin?: string;
   colorAppearance?: string;
   aromaProfile?: string;
+  odorProfile?: string;
   keyBenefits: string[];
   packOptions: PackOption[];
   image: string;
+  imageUrl?: string;
   badge?: string;
   pharmaGrade?: boolean;
   casNumber?: string;
+  applications?: string[];
+  moq?: string;
+  majorConstituents?: string;
 }
 
 export interface CartItem {

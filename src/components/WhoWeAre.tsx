@@ -3,7 +3,7 @@ import { Check } from 'lucide-react';
 
 export const WhoWeAre: React.FC = () => {
   return (
-    <section className="py-16 md:py-20 bg-white border-b border-stone-200">
+    <section id="about-us" className="py-14 md:py-20 bg-white border-b border-stone-200 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Main Title matching user screenshot 3 & 10 */}

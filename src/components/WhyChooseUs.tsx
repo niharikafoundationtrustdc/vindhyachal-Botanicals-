@@ -1,108 +1,98 @@
 import React from 'react';
-import { 
-  Store, 
-  Monitor, 
-  Droplet, 
-  BadgePercent, 
-  CalendarClock, 
-  PackageCheck 
-} from 'lucide-react';
+import { Sprout, Award, Package, Layers, Sparkles, Globe } from 'lucide-react';
 
 export const WhyChooseUs: React.FC = () => {
-  const pillars = [
+  const differentiators = [
     {
-      icon: Store,
-      title: 'Create Your Brand',
-      desc: 'Seamless end-to-end guidance from oil selection to brand registration support.',
+      number: '01',
+      icon: Sprout,
+      title: 'Natural Sourcing',
+      desc: 'Responsibly cultivated and harvested botanicals obtained directly from regional growers and sustainably managed agrarian reserves.',
     },
     {
-      icon: Monitor,
-      title: 'Design and Order Packaging',
-      desc: 'Expert vector graphics, waterproof labels, and custom amber/blue glass bottles.',
+      number: '02',
+      icon: Award,
+      title: 'Consistent Quality',
+      desc: 'Rigorous batch standardization backed by gas chromatography, optical density tests, and ISO 9001:2015 audited quality procedures.',
     },
     {
-      icon: Droplet,
-      title: 'Pure and Natural Essential Oils',
-      desc: '100% steam-distilled and cold-pressed botanical extracts with zero synthetic dilution.',
+      number: '03',
+      icon: Package,
+      title: 'Flexible Bulk Supply',
+      desc: 'Scalable supply tiers from 1kg sample canisters to full container loads (FCL) of 200kg drums with stable contract pricing.',
     },
     {
-      icon: BadgePercent,
-      title: 'Best Quality with Best Prices',
-      desc: 'Direct manufacturer pricing from Madhya Pradesh without middlemen markups.',
+      number: '04',
+      icon: Layers,
+      title: 'Private Label Expertise',
+      desc: 'Comprehensive formulation, blending, and white-label manufacturing built specifically to empower indie beauty and wellness brands.',
     },
     {
-      icon: CalendarClock,
-      title: 'Timely Delivery',
-      desc: 'Streamlined logistics with rapid dispatch and guaranteed batch schedules.',
+      number: '05',
+      icon: Sparkles,
+      title: 'Custom Packaging',
+      desc: 'Broad spectrum of container profiles, amber glass, luxury droppers, aluminum canisters, tamper seals, and bespoke labels.',
     },
     {
-      icon: PackageCheck,
-      title: 'Fulfill Orders',
-      desc: 'Flexible batch scales from small boutique orders to international 200kg drums.',
+      number: '06',
+      icon: Globe,
+      title: 'Global Supply Support',
+      desc: 'Experienced export dispatch teams preparing complete COA, MSDS, customs clearance documents, and reliable worldwide freight coordination.',
     },
   ];
 
   return (
-    <section id="why-us" className="py-16 md:py-24 bg-[#faf9f6] border-b border-stone-200 scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section className="py-20 md:py-28 bg-[#FFFFFF] border-b border-[#E9E2D3]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Title matching Screenshot 7 */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <h2 className="font-brand-serif text-3xl sm:text-4xl md:text-5xl text-[#78350f] font-bold tracking-tight">
-            Why Choose Us
+        {/* Section Heading */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[#496B52]">
+            OUR CORE COMPETITIVE ADVANTAGE
+          </span>
+          <h2 className="font-serif-brand text-3xl sm:text-4xl md:text-5xl font-bold text-[#183C32] mt-2 tracking-tight">
+            Why Brands Choose Vindhyachal Botanicals
           </h2>
-          <div className="w-16 h-1 bg-[#78350f]/30 mx-auto mt-3 rounded-full" />
+          <div className="w-16 h-0.5 bg-[#B79A62] mx-auto mt-4" />
+          <p className="mt-4 text-base sm:text-lg text-[#202723]/80 font-light leading-relaxed">
+            Combining scientific botanical extraction discipline with personalized B2B service for global personal care, cosmetics, and aromatherapy brands.
+          </p>
         </div>
 
-        {/* 6 Cards Grid matching user screenshot 7 layout */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
-          {pillars.map((item, idx) => {
+        {/* Six Items Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {differentiators.map((item) => {
             const Icon = item.icon;
             return (
               <div
-                key={idx}
-                className="bg-white rounded-xl p-5 border border-red-200/80 hover:border-red-400 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col items-center text-center group"
+                key={item.number}
+                className="bg-[#F7F4EC] rounded-2xl p-8 border border-[#E9E2D3] hover:border-[#B79A62]/40 transition-all duration-300 flex flex-col justify-between group hover:shadow-md"
               >
-                {/* Icon matching red/coral stroke in screenshot 7 */}
-                <div className="w-12 h-12 rounded-lg bg-red-50/60 text-[#dc2626] flex items-center justify-center mb-3.5 group-hover:scale-110 transition-transform">
-                  <Icon className="w-6 h-6 stroke-[1.75]" />
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-white border border-[#E9E2D3] flex items-center justify-center text-[#183C32] group-hover:text-[#B79A62] transition-colors">
+                      <Icon className="w-6 h-6 stroke-[1.5]" />
+                    </div>
+                    <span className="font-serif-brand font-bold text-2xl text-[#B79A62] tracking-wider">
+                      {item.number}
+                    </span>
+                  </div>
+
+                  <h3 className="font-serif-brand font-bold text-xl text-[#183C32] group-hover:text-[#496B52] transition-colors">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-[#202723]/75 mt-3 font-light leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                  {item.title}
-                </h3>
-
-                {/* Micro Description */}
-                <p className="text-[11px] text-stone-500 mt-2 leading-tight">
-                  {item.desc}
-                </p>
+                <div className="mt-6 pt-3 border-t border-[#E9E2D3] flex items-center gap-1.5 text-[11px] font-semibold text-[#496B52] uppercase tracking-wider">
+                  <span>Guaranteed Standard</span>
+                </div>
               </div>
             );
           })}
-        </div>
-
-        {/* Quality Standards Banner */}
-        <div className="mt-14 bg-white p-6 sm:p-8 rounded-3xl border border-stone-200 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <span className="text-xs font-bold text-emerald-800 uppercase tracking-wider block">
-              Commitment to Quality and Sustainability
-            </span>
-            <h4 className="font-brand-serif font-bold text-xl text-stone-900 mt-1">
-              Ethically Sourced • Rigorously Batch Tested • ISO / GMP Compliant
-            </h4>
-            <p className="text-xs sm:text-sm text-stone-600 mt-1.5 max-w-2xl">
-              At Vindhyachal Botanicals, quality is non-negotiable. We uphold rigorous standards throughout our extraction process, ensuring that every drop of oil embodies the richness and potency of its origin.
-            </p>
-          </div>
-          <div className="shrink-0 flex items-center gap-3">
-            <span className="px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
-              GC-MS Tested
-            </span>
-            <span className="px-3.5 py-1.5 rounded-full bg-stone-100 text-stone-800 text-xs font-bold border border-stone-200">
-              Zero Hexane
-            </span>
-          </div>
         </div>
 
       </div>

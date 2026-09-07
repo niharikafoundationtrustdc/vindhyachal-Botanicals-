@@ -1,345 +1,238 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Logo } from './Logo';
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Send, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Globe, 
-  Award,
-  ArrowRight
-} from 'lucide-react';
+import { PageId } from './Header';
+import { Mail, Phone, MapPin, ArrowUpRight, ShieldCheck, Heart } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/products';
 
 interface FooterProps {
-  onSelectCategory: (cat: string) => void;
-  onOpenQuote: () => void;
+  onNavigate: (page: PageId) => void;
+  onRequestQuote: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onOpenQuote }) => {
-  const [contactName, setContactName] = useState('');
-  const [contactEmail, setContactEmail] = useState('');
-  const [contactPhone, setContactPhone] = useState('');
-  const [contactMessage, setContactMessage] = useState('');
-  const [messageSent, setMessageSent] = useState(false);
-
-  const handleContactSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setMessageSent(true);
-
-    const text = `*New Contact Message - Vindhyachal Botanicals Website*\n` +
-      `• Name: ${contactName}\n` +
-      `• Phone: ${contactPhone}\n` +
-      `• Email: ${contactEmail}\n` +
-      `• Message: ${contactMessage}`;
-
-    const waUrl = `https://wa.me/${COMPANY_DETAILS.whatsappNumber}?text=${encodeURIComponent(text)}`;
-    window.open(waUrl, '_blank');
-  };
-
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestQuote }) => {
+  const handleNav = (page: PageId) => {
+    onNavigate(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer id="contact-section" className="bg-[#151833] text-stone-300 pt-16 pb-12 border-t border-stone-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <footer className="bg-[#183C32] text-[#F7F4EC] pt-16 sm:pt-20 pb-12 border-t border-[#204e41]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Contact & Inquiries Banner */}
-        <div className="bg-gradient-to-r from-[#1c224a] to-[#252c5c] rounded-3xl p-6 sm:p-10 border border-stone-700/80 mb-16 shadow-xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-5 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold">
-                <Globe className="w-3.5 h-3.5" />
-                <span>Global Inquiries Welcome</span>
-              </div>
-              <h3 className="font-brand-serif font-bold text-2xl sm:text-3xl text-white">
-                Connect Directly with Our Extraction Works
-              </h3>
-              <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
-                Whether you need bulk 25kg / 200kg drums, custom private label formulations, or Certificate of Analysis (COA) documentation, our botanical specialists are at your service.
-              </p>
-
-              <div className="space-y-2.5 pt-2 text-xs">
-                <a 
-                  href={`tel:${COMPANY_DETAILS.phone}`}
-                  className="flex items-center gap-2.5 text-stone-200 hover:text-emerald-400 transition-colors"
-                >
-                  <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>{COMPANY_DETAILS.phone} (Call / WhatsApp)</span>
-                </a>
-
-                <div className="flex items-start gap-2.5 text-stone-200">
-                  <Mail className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <div>
-                    {COMPANY_DETAILS.emails.map((email, idx) => (
-                      <a 
-                        key={idx}
-                        href={`mailto:${email}`}
-                        className="hover:text-emerald-400 transition-colors block"
-                      >
-                        {email}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2.5 text-stone-200">
-                  <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>{COMPANY_DETAILS.address}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Contact Form */}
-            <div className="lg:col-span-7 bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10">
-              <h4 className="font-brand-serif font-bold text-lg text-white mb-3">
-                Send Direct Message
-              </h4>
-
-              {messageSent ? (
-                <div className="p-4 bg-emerald-900/60 border border-emerald-400 rounded-xl text-xs text-emerald-200 flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Your message has been initiated. WhatsApp will open now to send directly to our team.</span>
-                </div>
-              ) : (
-                <form onSubmit={handleContactSubmit} className="space-y-3 text-xs">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <input
-                      type="text"
-                      required
-                      placeholder="Your Full Name"
-                      value={contactName}
-                      onChange={(e) => setContactName(e.target.value)}
-                      className="w-full px-3 py-2 bg-stone-900/80 border border-stone-700 rounded-lg text-white placeholder-stone-400 focus:outline-hidden focus:border-emerald-400"
-                    />
-                    <input
-                      type="tel"
-                      required
-                      placeholder="Phone / WhatsApp Number"
-                      value={contactPhone}
-                      onChange={(e) => setContactPhone(e.target.value)}
-                      className="w-full px-3 py-2 bg-stone-900/80 border border-stone-700 rounded-lg text-white placeholder-stone-400 focus:outline-hidden focus:border-emerald-400"
-                    />
-                  </div>
-
-                  <input
-                    type="email"
-                    required
-                    placeholder="Business Email"
-                    value={contactEmail}
-                    onChange={(e) => setContactEmail(e.target.value)}
-                    className="w-full px-3 py-2 bg-stone-900/80 border border-stone-700 rounded-lg text-white placeholder-stone-400 focus:outline-hidden focus:border-emerald-400"
-                  />
-
-                  <textarea
-                    rows={2}
-                    required
-                    placeholder="Tell us about the oils, quantities, or private labeling specifications you require..."
-                    value={contactMessage}
-                    onChange={(e) => setContactMessage(e.target.value)}
-                    className="w-full px-3 py-2 bg-stone-900/80 border border-stone-700 rounded-lg text-white placeholder-stone-400 focus:outline-hidden focus:border-emerald-400"
-                  />
-
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
-                  >
-                    <Send className="w-3.5 h-3.5" />
-                    <span>Send Message via WhatsApp</span>
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Main Footer Links Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-stone-800">
+        {/* Top 5-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-16 border-b border-white/10">
           
-          {/* Col 1: Brand Info & Logo */}
+          {/* Brand Column (Col 1-4) */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="bg-white/95 p-3 rounded-2xl inline-block">
-              <Logo variant="horizontal" size="md" />
-            </div>
-            <p className="text-xs text-stone-400 leading-relaxed max-w-sm">
-              Passionate manufacturers, suppliers, and exporters of pure natural extracts, dedicated to preserving the inherent vitality of the soul, body, and spirit. Based in Datia, MPC, India.
+            <button
+              onClick={() => handleNav('home')}
+              className="text-left focus:outline-hidden"
+              aria-label="Vindhyachal Botanicals Home"
+            >
+              <Logo variant="horizontal" theme="light" size="md" />
+            </button>
+
+            <p className="text-xs sm:text-sm text-[#F7F4EC]/75 font-light leading-relaxed max-w-sm pt-2">
+              Natural ingredients crafted with care. Manufacturers, suppliers and exporters of pure essential oils, carrier lipids, floral hydrosols and custom private-label solutions.
             </p>
-            <div className="flex items-center gap-3 text-xs text-emerald-400 font-medium">
-              <ShieldCheck className="w-4 h-4" />
-              <span>Certified GC-MS Batch Testing</span>
+
+            <div className="pt-2 flex items-center gap-3 text-xs text-[#B79A62]">
+              <ShieldCheck className="w-4 h-4 text-[#B79A62]" />
+              <span className="tracking-wider uppercase text-[11px] font-semibold">
+                ISO 9001:2015 &amp; GMP Registered Facility
+              </span>
+            </div>
+
+            <div className="pt-3">
+              <button
+                onClick={onRequestQuote}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#B79A62] hover:bg-[#a68953] text-[#183C32] rounded-full text-xs font-semibold tracking-wider uppercase transition-colors"
+              >
+                <span>Request B2B Quote</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </button>
             </div>
           </div>
 
-          {/* Col 2: Categories */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="font-brand-serif font-bold text-sm text-white uppercase tracking-wider">
-              Product Categories
-            </h4>
-            <ul className="space-y-1.5 text-xs text-stone-400">
-              <li>
-                <button
-                  onClick={() => {
-                    onSelectCategory('hydrosols');
-                    scrollTo('products-section');
-                  }}
-                  className="hover:text-emerald-400 transition-colors flex items-center gap-1.5"
-                >
-                  <ArrowRight className="w-3 h-3 text-emerald-500" />
-                  <span>Hydrosols (Floral Waters)</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    onSelectCategory('essential_oils');
-                    scrollTo('products-section');
-                  }}
-                  className="hover:text-emerald-400 transition-colors flex items-center gap-1.5"
-                >
-                  <ArrowRight className="w-3 h-3 text-emerald-500" />
-                  <span>Pure Essential Oils</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    onSelectCategory('carrier_oils');
-                    scrollTo('products-section');
-                  }}
-                  className="hover:text-emerald-400 transition-colors flex items-center gap-1.5"
-                >
-                  <ArrowRight className="w-3 h-3 text-emerald-500" />
-                  <span>Cold Pressed Carrier Oils</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    onSelectCategory('special_ingredients');
-                    scrollTo('products-section');
-                  }}
-                  className="hover:text-emerald-400 transition-colors flex items-center gap-1.5"
-                >
-                  <ArrowRight className="w-3 h-3 text-emerald-500" />
-                  <span>Special Active Ingredients</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    onSelectCategory('pharma_grade');
-                    scrollTo('products-section');
-                  }}
-                  className="hover:text-emerald-400 transition-colors flex items-center gap-1.5"
-                >
-                  <ArrowRight className="w-3 h-3 text-emerald-500" />
-                  <span>Pharma Grade (IP / BP Tested)</span>
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 3: Services & OEM */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="font-brand-serif font-bold text-sm text-white uppercase tracking-wider">
-              Contract Manufacturing
-            </h4>
-            <ul className="space-y-1.5 text-xs text-stone-400">
-              <li>
-                <button 
-                  onClick={() => scrollTo('private-labeling')}
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Private Labeling &amp; Bottle Filling
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollTo('private-labeling')}
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Custom Label Artwork &amp; Printing
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollTo('private-labeling')}
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Amber &amp; Cobalt Blue Glass Bottles
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={onOpenQuote}
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Bulk Industrial Drums (25kg - 200kg)
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollTo('certifications')}
-                  className="hover:text-emerald-400 transition-colors flex items-center gap-1 font-semibold text-emerald-400/90"
-                >
-                  <span>Our Certification (ISO &amp; GMP)</span>
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollTo('why-us')}
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Why Choose Vindhyachal Botanicals
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 4: Quality & Export */}
+          {/* Company Links (Col 5-6) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-brand-serif font-bold text-sm text-white uppercase tracking-wider">
-              Manufacturing Base
+            <h4 className="font-serif-brand font-bold text-base text-[#F7F4EC] tracking-wide">
+              Company
             </h4>
-            <div className="text-xs text-stone-400 space-y-2">
-              <p>
-                <strong>Factory Works:</strong><br />
-                Vindhyachal Botanicals<br />
-                Datia, Madhya Pradesh<br />
-                India
+            <ul className="space-y-2 text-xs font-light text-[#F7F4EC]/75">
+              <li>
+                <button
+                  onClick={() => handleNav('about')}
+                  className="hover:text-[#B79A62] transition-colors"
+                >
+                  About Us
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('about')}
+                  className="hover:text-[#B79A62] transition-colors"
+                >
+                  Quality Standards
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('about')}
+                  className="hover:text-[#B79A62] transition-colors"
+                >
+                  Sustainability
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('contact')}
+                  className="hover:text-[#B79A62] transition-colors"
+                >
+                  Contact Us
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Products (Col 7-8) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="font-serif-brand font-bold text-base text-[#F7F4EC] tracking-wide">
+              Products
+            </h4>
+            <ul className="space-y-2 text-xs font-light text-[#F7F4EC]/75">
+              <li>
+                <button
+                  onClick={() => handleNav('products')}
+                  className="hover:text-[#B79A62] transition-colors"
+                >
+                  Essential Oils
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('products')}
+                  className="hover:text-[#B79A62] transition-colors"
+                >
+                  Carrier Oils
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('products')}
+                  className="hover:text-[#B79A62] transition-colors"
+                >
+                  Natural Extracts
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('products')}
+                  className="hover:text-[#B79A62] transition-colors"
+                >
+                  Botanical Oils
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Solutions (Col 9-10) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="font-serif-brand font-bold text-base text-[#F7F4EC] tracking-wide">
+              Solutions
+            </h4>
+            <ul className="space-y-2 text-xs font-light text-[#F7F4EC]/75">
+              <li>
+                <button
+                  onClick={() => handleNav('private-label')}
+                  className="hover:text-[#B79A62] transition-colors"
+                >
+                  Private Label
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('private-label')}
+                  className="hover:text-[#B79A62] transition-colors"
+                >
+                  Contract Manufacturing
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('custom-packaging')}
+                  className="hover:text-[#B79A62] transition-colors"
+                >
+                  Custom Packaging
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('products')}
+                  className="hover:text-[#B79A62] transition-colors"
+                >
+                  Bulk Supply
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact (Col 11-12) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="font-serif-brand font-bold text-base text-[#F7F4EC] tracking-wide">
+              Contact
+            </h4>
+            <div className="space-y-2 text-xs font-light text-[#F7F4EC]/75">
+              <a
+                href={`mailto:${COMPANY_DETAILS.emails[0]}`}
+                className="block hover:text-[#B79A62] transition-colors truncate"
+              >
+                {COMPANY_DETAILS.emails[0]}
+              </a>
+              <a
+                href={`tel:${COMPANY_DETAILS.phone}`}
+                className="block hover:text-[#B79A62] transition-colors"
+              >
+                {COMPANY_DETAILS.phoneFormatted}
+              </a>
+              <a
+                href={`https://wa.me/${COMPANY_DETAILS.whatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:text-[#B79A62] transition-colors"
+              >
+                WhatsApp Desk
+              </a>
+              <p className="text-[11px] text-[#A8B7A1] pt-1">
+                Datia, MP - 475661, India
               </p>
-              <div className="pt-2">
-                <span className="text-[11px] text-amber-400 block font-semibold">
-                  Operating Hours:
-                </span>
-                <span className="text-[11px] text-stone-400">
-                  Mon – Sat: 9:00 AM – 7:00 PM IST
-                </span>
-              </div>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Strip */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-stone-500">
-          <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 text-center sm:text-left">
-            <p>© {new Date().getFullYear()} Vindhyachal Botanicals. All rights reserved. Direct Manufacturers &amp; Exporters.</p>
-            <span className="hidden sm:inline text-stone-600">•</span>
-            <p className="text-stone-400">
-              Developed by <span className="text-stone-300 font-medium">Digital communique private limited</span>
-            </p>
-          </div>
-          <div className="flex items-center gap-4 text-[11px]">
-            <span>100% Pure Extracts</span>
-            <span>•</span>
-            <span>Sustainable Agriculture</span>
-            <span>•</span>
-            <span>Global Port Dispatch</span>
+        {/* Bottom Legal Copyright Strip */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#F7F4EC]/60 font-light">
+          <p>
+            &copy; {COMPANY_DETAILS.copyrightYear} {COMPANY_DETAILS.name}. All Rights Reserved.
+          </p>
+
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => handleNav('about')}
+              className="hover:text-[#B79A62] transition-colors"
+            >
+              Privacy Policy
+            </button>
+            <span className="w-1 h-1 rounded-full bg-white/20" />
+            <button
+              onClick={() => handleNav('about')}
+              className="hover:text-[#B79A62] transition-colors"
+            >
+              Terms &amp; Conditions
+            </button>
+            <span className="w-1 h-1 rounded-full bg-white/20" />
+            <span>Export Clearance Compliant</span>
           </div>
         </div>
 

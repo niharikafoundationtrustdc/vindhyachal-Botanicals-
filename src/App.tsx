@@ -1,239 +1,168 @@
 import React, { useState, useEffect } from 'react';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { WhoWeAre } from './components/WhoWeAre';
-import { MissionVision } from './components/MissionVision';
-import { Certifications } from './components/Certifications';
-import { ProductCatalog } from './components/ProductCatalog';
-import { PrivateLabeling } from './components/PrivateLabeling';
-import { WhyChooseUs } from './components/WhyChooseUs';
+import { Header, PageId } from './components/Header';
 import { Footer } from './components/Footer';
-import { CartDrawer } from './components/CartDrawer';
-import { ProductModal } from './components/ProductModal';
+import { HomePage } from './pages/HomePage';
+import { AboutPage } from './pages/AboutPage';
+import { ProductsPage } from './pages/ProductsPage';
+import { ProductDetailPage } from './pages/ProductDetailPage';
+import { PrivateLabelPage } from './pages/PrivateLabelPage';
+import { CustomPackagingPage } from './pages/CustomPackagingPage';
+import { ContactPage } from './pages/ContactPage';
 import { QuoteModal } from './components/QuoteModal';
-
-import { PRODUCTS, COMPANY_DETAILS } from './data/products';
-import { Product, PackOption, CartItem } from './types';
-import { MessageCircle } from 'lucide-react';
+import { SpecModal } from './components/SpecModal';
+import { FloatingActions } from './components/FloatingActions';
+import { Product } from './types';
+import { PRODUCTS } from './data/products';
 
 export default function App() {
-  // Cart state with localStorage fallback
-  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
-    try {
-      const saved = localStorage.getItem('vb_cart_items');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  const [currentPage, setCurrentPage] = useState<PageId>('home');
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [initialProductsCategory, setInitialProductsCategory] = useState<string>('All');
 
-  // Currency selection: INR (₹) default, USD ($) for international export
-  const [currency, setCurrency] = useState<'INR' | 'USD'>(() => {
-    try {
-      const saved = localStorage.getItem('vb_currency');
-      return saved === 'USD' ? 'USD' : 'INR';
-    } catch {
-      return 'INR';
-    }
-  });
+  // Modals state
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState<boolean>(false);
+  const [quotePreselectedProduct, setQuotePreselectedProduct] = useState<string | undefined>(undefined);
 
-  // UI state
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isQuoteOpen, setIsQuoteOpen] = useState(false);
-  const [selectedProductModal, setSelectedProductModal] = useState<Product | null>(null);
-  const [prefilledQuoteProduct, setPrefilledQuoteProduct] = useState<Product | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>('all');
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [isSpecModalOpen, setIsSpecModalOpen] = useState<boolean>(false);
+  const [specProduct, setSpecProduct] = useState<Product | null>(null);
 
-  // Persist cart to localStorage
+  // Sync with browser hash if user uses anchor or deep-links
   useEffect(() => {
-    try {
-      localStorage.setItem('vb_cart_items', JSON.stringify(cartItems));
-    } catch (e) {
-      console.error('Failed to save cart to localStorage', e);
-    }
-  }, [cartItems]);
-
-  // Persist currency
-  useEffect(() => {
-    try {
-      localStorage.setItem('vb_currency', currency);
-    } catch (e) {
-      console.error('Failed to save currency to localStorage', e);
-    }
-  }, [currency]);
-
-  // Cart actions
-  const handleAddToCart = (product: Product, pack: PackOption, quantity: number = 1) => {
-    setCartItems((prev) => {
-      const existingIndex = prev.findIndex(
-        (item) => item.product.id === product.id && item.selectedPack.size === pack.size
-      );
-
-      if (existingIndex > -1) {
-        const updated = [...prev];
-        updated[existingIndex].quantity += quantity;
-        return updated;
-      } else {
-        return [...prev, { product, selectedPack: pack, quantity }];
+    const handleHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (['home', 'about', 'products', 'private-label', 'custom-packaging', 'contact'].includes(hash)) {
+        setCurrentPage(hash as PageId);
+        setSelectedProduct(null);
       }
-    });
+    };
+
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
+  const navigateTo = (page: PageId) => {
+    setCurrentPage(page);
+    setSelectedProduct(null);
+    window.location.hash = page === 'home' ? '' : page;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleUpdateQuantity = (productId: string, packSize: string, newQuantity: number) => {
-    if (newQuantity <= 0) {
-      handleRemoveItem(productId, packSize);
-      return;
-    }
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.product.id === productId && item.selectedPack.size === packSize
-          ? { ...item, quantity: newQuantity }
-          : item
-      )
-    );
+  const handleOpenQuote = (productName?: string) => {
+    setQuotePreselectedProduct(productName);
+    setIsQuoteModalOpen(true);
   };
 
-  const handleRemoveItem = (productId: string, packSize: string) => {
-    setCartItems((prev) =>
-      prev.filter((item) => !(item.product.id === productId && item.selectedPack.size === packSize))
-    );
+  const handleOpenSpec = (product: Product) => {
+    setSpecProduct(product);
+    setIsSpecModalOpen(true);
   };
 
-  const handleClearCart = () => {
-    setCartItems([]);
+  const handleViewProduct = (product: Product) => {
+    setSelectedProduct(product);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  const handleToggleCurrency = () => {
-    setCurrency((prev) => (prev === 'INR' ? 'USD' : 'INR'));
-  };
-
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const totalCartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-[#faf9f6] text-stone-900 flex flex-col font-sans selection:bg-[#0e632b]/20 selection:text-[#0e632b]">
-      {/* Top Main Navigation Header */}
+    <div className="min-h-screen bg-[#F7F4EC] text-[#202723] flex flex-col font-sans-brand antialiased selection:bg-[#183C32] selection:text-[#F7F4EC]">
+      
+      {/* Sticky B2B Botanical Header */}
       <Header
-        cartCount={totalCartCount}
-        onOpenCart={() => setIsCartOpen(true)}
-        onOpenQuote={() => {
-          setPrefilledQuoteProduct(null);
-          setIsQuoteOpen(true);
-        }}
-        currency={currency}
-        onToggleCurrency={handleToggleCurrency}
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-        activeCategory={activeCategory}
-        onSelectCategory={setActiveCategory}
+        currentPage={selectedProduct ? 'products' : currentPage}
+        onNavigate={navigateTo}
+        onRequestQuote={() => handleOpenQuote()}
       />
 
-      {/* Main Content Sections */}
-      <main className="flex-1">
-        {/* Hero Section */}
-        <Hero
-          onExploreProducts={() => scrollToSection('products-section')}
-          onRequestQuote={() => {
-            setPrefilledQuoteProduct(null);
-            setIsQuoteOpen(true);
-          }}
-          onExplorePrivateLabel={() => scrollToSection('private-labeling')}
-        />
+      {/* Main Routed Page Content */}
+      <div className="flex-1 w-full">
+        {selectedProduct ? (
+          <ProductDetailPage
+            product={selectedProduct}
+            onBack={() => setSelectedProduct(null)}
+            onRequestBulkPricing={(prod) => handleOpenQuote(prod.name)}
+            onRequestSpecification={handleOpenSpec}
+            onSelectProduct={handleViewProduct}
+            onNavigateToPrivateLabel={() => navigateTo('private-label')}
+          />
+        ) : (
+          <>
+            {currentPage === 'home' && (
+              <HomePage
+                onNavigateToProducts={() => navigateTo('products')}
+                onNavigateToAbout={() => navigateTo('about')}
+                onNavigateToPrivateLabel={() => navigateTo('private-label')}
+                onNavigateToPackaging={() => navigateTo('custom-packaging')}
+                onNavigateToContact={() => navigateTo('contact')}
+                onRequestQuote={() => handleOpenQuote()}
+                onViewProduct={handleViewProduct}
+                onRequestBulkPricing={(prod) => handleOpenQuote(prod.name)}
+                onRequestSpecification={handleOpenSpec}
+                onSelectCategory={(cat) => {
+                  setInitialProductsCategory(cat);
+                  navigateTo('products');
+                }}
+              />
+            )}
 
-        {/* Natural Essential oils manufacturers in India & Who We Are */}
-        <WhoWeAre />
+            {currentPage === 'about' && (
+              <AboutPage
+                onRequestQuote={() => handleOpenQuote()}
+                onNavigateToProducts={() => navigateTo('products')}
+              />
+            )}
 
-        {/* Our Mission & Our Vision */}
-        <MissionVision
-          onGetMoreInfo={() => {
-            setPrefilledQuoteProduct(null);
-            setIsQuoteOpen(true);
-          }}
-        />
+            {currentPage === 'products' && (
+              <ProductsPage
+                onViewProduct={handleViewProduct}
+                onRequestBulkPricing={(prod) => handleOpenQuote(prod.name)}
+                onRequestSpecification={handleOpenSpec}
+                initialCategory={initialProductsCategory}
+              />
+            )}
 
-        {/* Our Certification (ISO 9001:2015 & GMP) */}
-        <Certifications />
+            {currentPage === 'private-label' && (
+              <PrivateLabelPage
+                onRequestQuote={() => handleOpenQuote('Private Label Consultation')}
+              />
+            )}
 
-        {/* Complete Product Catalog & Pricing */}
-        <ProductCatalog
-          products={PRODUCTS}
-          selectedCategory={activeCategory}
-          onSelectCategory={setActiveCategory}
-          searchQuery={searchQuery}
-          currency={currency}
-          onAddToCart={handleAddToCart}
-          onOpenProductModal={(prod) => setSelectedProductModal(prod)}
-          onRequestQuoteForProduct={(prod) => {
-            setPrefilledQuoteProduct(prod);
-            setIsQuoteOpen(true);
-          }}
-        />
+            {currentPage === 'custom-packaging' && (
+              <CustomPackagingPage
+                onRequestQuote={() => handleOpenQuote('Custom Packaging Inquiry')}
+              />
+            )}
 
-        {/* Private Labeling & Custom Packaging */}
-        <PrivateLabeling />
+            {currentPage === 'contact' && <ContactPage />}
+          </>
+        )}
+      </div>
 
-        {/* Why Choose Us */}
-        <WhyChooseUs />
-      </main>
-
-      {/* Comprehensive Footer */}
+      {/* Global Comprehensive Footer */}
       <Footer
-        onSelectCategory={setActiveCategory}
-        onOpenQuote={() => {
-          setPrefilledQuoteProduct(null);
-          setIsQuoteOpen(true);
-        }}
+        onNavigate={navigateTo}
+        onRequestQuote={() => handleOpenQuote()}
       />
 
-      {/* Cart & Wholesale Quote Drawer */}
-      <CartDrawer
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        cartItems={cartItems}
-        currency={currency}
-        onUpdateQuantity={handleUpdateQuantity}
-        onRemoveItem={handleRemoveItem}
-        onClearCart={handleClearCart}
-        onOpenQuoteModal={() => {
-          setIsCartOpen(false);
-          setPrefilledQuoteProduct(null);
-          setIsQuoteOpen(true);
-        }}
-      />
-
-      {/* Product Detail Specifications Modal */}
-      <ProductModal
-        product={selectedProductModal}
-        onClose={() => setSelectedProductModal(null)}
-        currency={currency}
-        onAddToCart={handleAddToCart}
-      />
-
-      {/* Bulk Wholesale RFQ Modal */}
+      {/* RFQ / Wholesale Quotation Modal */}
       <QuoteModal
-        isOpen={isQuoteOpen}
-        onClose={() => setIsQuoteOpen(false)}
-        prefilledProduct={prefilledQuoteProduct}
+        isOpen={isQuoteModalOpen}
+        onClose={() => setIsQuoteModalOpen(false)}
+        preselectedProduct={quotePreselectedProduct}
       />
 
-      {/* Floating Instant WhatsApp Button */}
-      <a
-        href={`https://wa.me/${COMPANY_DETAILS.whatsappNumber}?text=Hello%20Vindhyachal%20Botanicals%2C%20I%20am%20visiting%20your%20website%20and%20would%20like%20to%20inquire%20about%20pure%20natural%20oils%20and%20private%20labeling.`}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Direct WhatsApp Chat"
-        className="fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3.5 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center group"
-      >
-        <MessageCircle className="w-6 h-6 fill-current" />
-        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-bold pl-0 group-hover:pl-2">
-          Chat with Factory Team
-        </span>
-      </a>
+      {/* Specification & COA Download Modal */}
+      <SpecModal
+        isOpen={isSpecModalOpen}
+        onClose={() => {
+          setIsSpecModalOpen(false);
+          setSpecProduct(null);
+        }}
+        product={specProduct}
+      />
+
+      {/* Subtle Floating Contact & Quote Actions */}
+      <FloatingActions onRequestQuote={() => handleOpenQuote()} />
+
     </div>
   );
 }
