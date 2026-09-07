@@ -273,27 +273,19 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   <div
                     key={rel.id}
                     onClick={() => onSelectProduct(rel)}
-                    className="bg-[#F7F4EC] rounded-2xl overflow-hidden border border-[#E9E2D3] hover:border-[#B79A62]/40 transition-all cursor-pointer group"
+                    className="bg-white rounded-2xl overflow-hidden border border-[#E9E2D3] hover:border-[#183C32]/40 hover:shadow-lg transition-all cursor-pointer group"
                   >
-                    <div className="aspect-16/10 overflow-hidden bg-[#E9E2D3]">
+                    <div className="aspect-4/3 overflow-hidden bg-[#F7F4EC]">
                       <img
                         src={relImage}
                         alt={rel.name}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
-                    <div className="p-5">
+                    <div className="p-5 text-center">
                       <h4 className="font-serif-brand font-bold text-lg text-[#183C32] group-hover:text-[#496B52] transition-colors">
                         {rel.name}
                       </h4>
-                      {rel.botanicalName && (
-                        <p className="font-serif-brand italic text-xs text-[#496B52]">
-                          {rel.botanicalName}
-                        </p>
-                      )}
-                      <span className="text-xs text-[#B79A62] font-semibold block mt-3">
-                        View Details &amp; Spec &rarr;
-                      </span>
                     </div>
                   </div>
                 );

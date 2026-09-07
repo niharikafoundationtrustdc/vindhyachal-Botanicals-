@@ -177,107 +177,30 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
             {filteredProducts.map((product) => {
               const productImage = product.imageUrl || product.image;
-              const productApps = product.applications || ['Aromatherapy', 'Cosmetics', 'Skincare'];
-              const productMoq = product.moq || '1 kg';
 
               return (
                 <div
                   key={product.id}
-                  className="bg-white rounded-2xl overflow-hidden border border-[#E9E2D3] hover:border-[#B79A62]/50 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                  onClick={() => onViewProduct(product)}
+                  className="bg-white rounded-2xl overflow-hidden border border-[#E9E2D3] hover:border-[#183C32]/40 hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer group"
                 >
-                  <div>
-                    {/* Image & Badges */}
-                    <div
-                      onClick={() => onViewProduct(product)}
-                      className="relative aspect-16/10 overflow-hidden bg-[#E9E2D3] cursor-pointer"
-                    >
-                      <img
-                        src={productImage}
-                        alt={product.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                        <span className="text-[10px] uppercase font-semibold tracking-wider px-2.5 py-1 rounded-full bg-[#183C32]/85 text-[#F7F4EC] backdrop-blur-xs">
-                          {product.categoryLabel || product.category}
-                        </span>
-                      </div>
-
-                      {product.extractionMethod && (
-                        <span className="absolute bottom-3 right-3 text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-md bg-white/90 text-[#183C32] font-medium backdrop-blur-xs">
-                          {product.extractionMethod}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6">
-                      <button
-                        onClick={() => onViewProduct(product)}
-                        className="text-left group-hover:text-[#496B52] transition-colors focus:outline-hidden cursor-pointer"
-                      >
-                        <h3 className="font-serif-brand font-bold text-xl text-[#183C32]">
-                          {product.name}
-                        </h3>
-                      </button>
-
-                      {product.botanicalName && (
-                        <p className="font-serif-brand italic text-xs text-[#496B52] mt-0.5">
-                          {product.botanicalName}
-                        </p>
-                      )}
-
-                      <p className="text-xs sm:text-sm text-[#202723]/75 mt-3 font-light line-clamp-2 leading-relaxed">
-                        {product.description}
-                      </p>
-
-                      {/* Applications & Packaging Preview */}
-                      <div className="mt-4 pt-3 border-t border-[#E9E2D3] flex flex-wrap gap-1.5">
-                        {productApps.slice(0, 3).map((app, i) => (
-                          <span
-                            key={i}
-                            className="text-[10px] px-2 py-0.5 rounded-md bg-[#F7F4EC] text-[#183C32] font-medium"
-                          >
-                            {app}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="mt-3 flex items-center justify-between text-[11px] text-[#202723]/70">
-                        <span>MOQ: <strong>{productMoq}</strong></span>
-                        <span className="text-[#496B52] font-medium">COA Available</span>
-                      </div>
-                    </div>
+                  {/* Image */}
+                  <div className="relative aspect-4/3 overflow-hidden bg-[#F7F4EC]">
+                    <img
+                      src={productImage}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
 
-                  {/* Card Actions */}
-                  <div className="p-6 pt-0 space-y-2">
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        onClick={() => onRequestBulkPricing(product)}
-                        className="w-full py-2.5 bg-[#183C32] hover:bg-[#204e41] text-[#F7F4EC] rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors text-center cursor-pointer"
-                      >
-                        Request Quote
-                      </button>
-
-                      <button
-                        onClick={() => onRequestSpecification(product)}
-                        className="w-full py-2.5 bg-[#F7F4EC] hover:bg-[#E9E2D3] text-[#183C32] border border-[#E9E2D3] rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors text-center cursor-pointer flex items-center justify-center gap-1.5"
-                      >
-                        <FileText className="w-3.5 h-3.5 text-[#B79A62]" />
-                        <span>Spec &amp; COA</span>
-                      </button>
-                    </div>
-
-                    <button
-                      onClick={() => onViewProduct(product)}
-                      className="w-full py-2 text-center text-xs text-[#496B52] hover:text-[#183C32] font-semibold flex items-center justify-center gap-1 cursor-pointer"
-                    >
-                      <span>Full Product Specifications</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </button>
+                  {/* Product Name Only */}
+                  <div className="p-5 sm:p-6 text-center flex-1 flex flex-col justify-center">
+                    <h3 className="font-serif-brand font-bold text-lg sm:text-xl text-[#183C32] group-hover:text-[#496B52] transition-colors">
+                      {product.name}
+                    </h3>
                   </div>
                 </div>
               );
